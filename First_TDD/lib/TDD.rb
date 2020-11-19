@@ -34,3 +34,67 @@ def stock_picker(stock_prices)
     days_to_buy << stock_prices.index(largest)
     days_to_buy
 end
+
+class TowersOfHanoi
+    def initialize 
+        @board = Array.new(3) {Array.new}
+        (1..3).each do |num|
+            @board[0] << num 
+        end
+    end
+
+    def valid_moves?(user_move)
+        start, finish = user_move
+        #it's not a valid move if :there is a disk smaller 
+        #valid move if it's empty or the disk is bigger than self
+        if !@board[finish].empty? 
+            return false if @board[finish][0] < @board[start][0]
+        end
+        
+        #return false if @board[finish][0] < @board[start][0]
+        return true 
+    end
+
+    def move 
+        user_pos = self.get_move
+        start, finish = user_pos 
+        if valid_moves?(user_pos)
+            @board[finish].unshift(@board[start].shift)
+        end
+            
+    end
+
+    def get_move 
+        p "What row do you want to move from, and move to? Enter two numbers, example '0 0'"
+        pos = gets.chomp
+        final = []
+        position = pos.split(" ")
+        position.each do |idx|
+            final << idx.to_i 
+        end
+        raise "this spot is empty" if @board[final[0]].empty?
+        final 
+    end
+
+    def render 
+        (0...3).each do |i1|
+            puts @board[i1]
+        end
+    end
+
+    def play 
+        self.render 
+        until game_over? 
+            self.get_move 
+            self.move 
+            self.render
+        end
+        puts "Good job!"
+    end
+
+    def game_over?
+        return true if @board[1] == [1, 2, 3] || @board[2] == [1, 2, 3]
+        false
+    end
+end
+

@@ -23,3 +23,40 @@ describe "#my_uniq" do
     end
 end
 
+
+describe Array do 
+    subject (:array) {[-1, 0, 2, -2, 1]}
+    let (:answer) {[[0, 4], [2, 3]]}
+    let (:not_answer) {[[2, 3], [0, 4]]}
+    describe "#two_sum" do 
+        it "should return all pairs of indices whose elements that sum to zero" do 
+            expect(array.two_sum).to eq(answer)
+        end
+
+        it "should not return elements out of order" do 
+            expect(array.two_sum).to_not eq(not_answer)
+        end 
+    end
+end
+
+describe "#my_transpose" do
+    subject (:rows) {[
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8]
+    ]}
+
+    let (:answer) {[
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8]
+    ]}
+
+    it "should not return the original array" do
+        expect(my_transpose(rows)).to_not eq(rows)
+    end
+
+    it "should make the columns into rows" do 
+        expect(my_transpose(rows)).to eq(answer)
+    end
+end

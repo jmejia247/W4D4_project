@@ -36,6 +36,9 @@ def stock_picker(stock_prices)
 end
 
 class TowersOfHanoi
+
+    attr_reader :board
+
     def initialize 
         @board = Array.new(3) {Array.new}
         (1..3).each do |num|
@@ -97,4 +100,3 @@ class TowersOfHanoi
         false
     end
 end
-

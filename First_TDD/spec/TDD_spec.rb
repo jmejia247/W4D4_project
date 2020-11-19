@@ -76,4 +76,14 @@ describe "#stock_picker" do
 
 end
 
-describ
+describe TowersOfHanoi do 
+    subject (:hanoi) {TowersOfHanoi.new}
+    let(:board) {[[1,2,3], [], []]}
+    describe "#initialize" do
+        it "should create an instance of board with a 2D array" do
+            expect(hanoi.board).to eq(board)
+        end
+    end
+
+    describe 
+end

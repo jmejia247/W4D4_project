@@ -60,3 +60,18 @@ describe "#my_transpose" do
         expect(my_transpose(rows)).to eq(answer)
     end
 end
+
+describe "#stock_picker" do 
+    subject (:september) {[65, 31, 32, 44, 60]} # => [0, 4]
+    let (:answer) {[1,4]}
+    let(:not_answer) {[4,1]}
+
+    it "should return the indecies of the smallest and the largest amount" do 
+        expect(stock_picker(september)).to eq(answer)
+    end
+
+    it "should have buy day indecie should be smaller than sell day index" do
+        expect(stock_picker(september)).to_not eq(not_answer)
+    end
+
+end

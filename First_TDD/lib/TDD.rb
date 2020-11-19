@@ -19,3 +19,18 @@ end
 def my_transpose(array)
     array.transpose
 end
+
+def stock_picker(stock_prices)
+    days_to_buy = []
+    reference = stock_prices.first
+    stock_prices.each_with_index do |price, i|
+        reference = stock_prices[i] if price < reference
+    end
+    days_to_buy << stock_prices.index(reference)
+    largest = reference
+    (days_to_buy[0]..stock_prices.length - 1).each do |i|
+        largest = stock_prices[i] if stock_prices[i] > largest
+    end
+    days_to_buy << stock_prices.index(largest)
+    days_to_buy
+end
